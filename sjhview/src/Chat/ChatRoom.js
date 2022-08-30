@@ -1,13 +1,12 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
+import {over} from 'stompjs';
 import SockJS from 'sockjs-client';
-const Stomp = require('stompjs')
 
 let stompClient = null;
-
 const ChatRoom = () => {
     const [privateChats, setPrivateChats] = useState(new Map());
     const [publicChats, setPublicChats] = useState([]);
-    const [tab,setTab] = useState("CHATROOM");
+    const [tab,setTab] =useState("CHATROOM");
     const [userData, setUserData] = useState({
         username: '',
         receivername: '',
@@ -20,11 +19,8 @@ const ChatRoom = () => {
 
     const connect =()=>{
         let Sock = new SockJS('http://localhost:8080/ws');
-        const stompClient = Stomp.over(Sock);
-        // stompClient = over(Sock);
-        stompClient.connect(
-            {},onConnected, onError
-        );
+        stompClient = over(Sock);
+        stompClient.connect({},onConnected, onError);
     }
 
     const onConnected = () => {
