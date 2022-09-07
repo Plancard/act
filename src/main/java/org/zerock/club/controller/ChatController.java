@@ -14,13 +14,13 @@ public class ChatController {
     @Autowired
     private SimpMessagingTemplate simpMessagingTemplate;
 
-    @MessageMapping("/message")
+    @MessageMapping("/app/message")
     @SendTo("/chatroom/public")
     public Message receiveMessage(@Payload Message message){
         return message;
     }
 
-    @MessageMapping("/private-message")
+    @MessageMapping("/app/private-message")
     public Message recMessage(@Payload Message message){
         simpMessagingTemplate.convertAndSendToUser(message.getReceiverName(),"/private",message);
         System.out.println(message.toString());

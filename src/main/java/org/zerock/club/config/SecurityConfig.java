@@ -54,6 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         configuration.setAllowCredentials(true);
         configuration.addAllowedOrigin("http://localhost:3000");
         configuration.addAllowedOrigin("http://localhost:8080/ws");
+        configuration.addAllowedOrigin("http://localhost:8080/app/message");
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
         configuration.addExposedHeader("X-AUTH-TOKEN");
