@@ -17,12 +17,14 @@ const ChatRoom = () => {
         console.log(userData);
     }, [userData]);
 
+    // 소켓 연결
     const connect =()=>{
         let Sock = new SockJS('http://localhost:8080/ws');
         stompClient = over(Sock);
         stompClient.connect({},onConnected, onError);
     }
 
+    // 유저 접속 확인 및 채팅방 입장
     const onConnected = () => {
         setUserData({...userData,"connected": true});
         stompClient.subscribe('/chatroom/public', onMessageReceived);
@@ -30,6 +32,7 @@ const ChatRoom = () => {
         userJoin();
     }
 
+    // 유저 이름과 상태를 기록 후 값을 넘겨줌
     const userJoin=()=>{
         const chatMessage = {
             senderName: userData.username,

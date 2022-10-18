@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 
+// 테스트 페이지
 function View(){
     const [all, setAll] = useState('')
 

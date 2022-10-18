@@ -4,16 +4,19 @@ import boardService from "../service/BoardService";
 
 const BoardCreate = () => {
 
+    // 게시판 형식을 지정
     const FormState = {
-        p_title: "",
-        p_content: "",
-        p_nickname: ""
+        p_title: "", // 제목
+        p_content: "", // 내용
+        p_nickname: "" // 작성자
     };
 
+    // 내용을 담아줄 useState 지정
     const [boards, setBoards] = useState({FormState});
 
     const {p_title, p_content, p_nickname} = boards;
 
+    // 작성 버튼을 누르기 전 요소가 변할 때 마다 반응하게 해 줄 변수
     const onChange = (e) => {
         const { value, name } = e.target;
         setBoards({
@@ -22,6 +25,7 @@ const BoardCreate = () => {
         });
     };
 
+    // 작성 완료 버튼을 누르면 작동, 유효성 검사 후 boardService로 넘겨서 BackEnd와 통신
     const onSubmit = (e) => {
         e.preventDefault()
         if(!p_title){
@@ -46,6 +50,7 @@ const BoardCreate = () => {
                     p_content:'',
                     p_nickname:'',
                 });
+                // 작성 후 게시판으로 이동
                 navigate('/board')
             }else {
                 alert('게시글 작성을 실패했습니다');

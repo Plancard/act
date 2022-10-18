@@ -8,14 +8,17 @@ const BoardRead = () => {
     const { no } = useParams();
     const [boards, setBoards] = useState('')
 
+    // 게시글 번호 확인
     console.log(no)
 
+    // 게시글 하나 읽어오기
     useEffect(() => {
         boardService.getBoard(no)
             .then(r => setBoards(r.data))
             .catch(error => console.log(error))
     }, []);
 
+    // 게시글 삭제버튼 활성화 시
     const deletePost = () => {
         if(window.confirm("글을 삭제하시겠습니까?")){
             boardService.deleteBoard(no)
@@ -26,6 +29,7 @@ const BoardRead = () => {
         }
     }
 
+    // 수정 버튼
     const updatePost = () => {
         navigate(`/create-board/${no}`)
     }

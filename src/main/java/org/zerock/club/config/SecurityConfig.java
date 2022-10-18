@@ -20,6 +20,7 @@ import org.zerock.club.security.handler.ApiLoginFailHandler;
 import org.zerock.club.security.handler.ClubLoginSuccessHandler;
 import org.zerock.club.security.util.JWTUtil;
 
+// 8080, 3000 포트와 채팅 메세지를 허용
 @Configuration
 @Log4j2
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)

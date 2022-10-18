@@ -14,6 +14,7 @@ public class ChatController {
     @Autowired
     private SimpMessagingTemplate simpMessagingTemplate;
 
+    // FrontEnd에서 가져온 메세지를 전달
     @MessageMapping("/app/message")
     @SendTo("/chatroom/public")
     public Message receiveMessage(@Payload Message message){

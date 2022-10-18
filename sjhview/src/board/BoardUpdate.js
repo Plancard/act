@@ -5,9 +5,11 @@ import {useNavigate, useParams} from "react-router-dom";
 const BoardUpdate = () => {
 
     const navigate = useNavigate();
+    // 주솟값에서 게시글 번호 읽어오기
     const { no } = useParams();
     const [boards, setBoards] = useState('')
 
+    // 유효성 검사
     const onSubmit = (e) => {
         e.preventDefault()
         if(!boards.p_title){
@@ -25,6 +27,7 @@ const BoardUpdate = () => {
             p_content: boards.p_content,
             p_nickname: boards.p_nickname,
         };
+        // 글 번호와 수정될 내용을 가지고 BackEnd와 통신
         boardService.updateBoard(no, variables).then(r => {
             if (r.status === 200){
                 setBoards({
@@ -32,6 +35,7 @@ const BoardUpdate = () => {
                     p_content:'',
                     p_nickname:'',
                 });
+                // 수정완료 시 원래의 게시글로 이동
                 navigate(`/board/${no}`)
             }else {
                 alert('게시글 수정을 실패했습니다');

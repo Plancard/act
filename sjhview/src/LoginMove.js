@@ -19,6 +19,7 @@ const TodoTemplateBlock = styled.div`
   flex-direction: column;
 `;
 
+// 폐기된 페이지
 function LoginMove() {
     return <TodoTemplateBlock>
         <main>

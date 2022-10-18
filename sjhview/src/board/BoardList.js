@@ -4,15 +4,18 @@ import {useNavigate, Link} from "react-router-dom";
 
 const BoardList = () => {
 
+    // 조회 State는 Json 형태로 받아오기 때문에 내용이 빈 배열
     const [boards, setBoards] = useState([])
     const navigate = useNavigate()
 
+    // boardService로 BackEnd와 통신하여 게시글 목록을 불러와 json 형태로 변환 및 호출
     useEffect(() => {
         boardService.getBoards()
             .then(response => setBoards(response.data))
             .catch(error => console.log(error))
     }, []);
 
+    // 해당하는 게시물 번호로 이동하게 하는 function
     function readBoard(no) {
         navigate(`/board/${no}`);
     }
